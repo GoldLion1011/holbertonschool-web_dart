@@ -14,21 +14,12 @@ Future<double> calculateTotal() async {
 
     for (var orderItem in userOrders) {
       final productPriceJson = await fetchProductPrice(orderItem);
-      final double productPrice = json.decode(productPriceJson);
+      final double productPrice = double.parse(productPriceJson);
       totalPrice += productPrice;
     }
 
     return totalPrice;
   } catch (error) {
     return -1; // Return -1 in case of an error
-  }
-}
-
-void main() async {
-  final total = await calculateTotal();
-  if (total == -1) {
-    print("Error occurred while calculating the total.");
-  } else {
-    print("Total Price: \$${total.toStringAsFixed(2)}");
   }
 }
